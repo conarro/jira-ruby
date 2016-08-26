@@ -14,20 +14,20 @@ module JIRA
       end
 
       def self.get_backlog_issues(client, board_id, options = {})
-        options[:maxResults] ||= 100
-        response = client.get("/rest/agile/1.0/board/#{board_id}/backlog?maxResults=#{options[:maxResults]}")
+        options[:maxResults] = 100 unless options[:maxResults]
+        response = client.get("/rest/agile/1.0/board/#{board_id}/backlog?#{parameterize_options(options)}")
         parse_json(response.body)
       end
 
       def self.get_sprints(client, board_id, options = {})
-        options[:maxResults] ||= 100
-        response = client.get("/rest/agile/1.0/board/#{board_id}/sprint?maxResults=#{options[:maxResults]}")
+        options[:maxResults] = 100 unless options[:maxResults]
+        response = client.get("/rest/agile/1.0/board/#{board_id}/sprint?#{parameterize_options(options)}")
         parse_json(response.body)
       end
 
       def self.get_sprint_issues(client, sprint_id, options = {})
-        options[:maxResults] ||= 100
-        response = client.get("/rest/agile/1.0/sprint/#{sprint_id}/issue?maxResults=#{options[:maxResults]}")
+        options[:maxResults] = 100 unless options[:maxResults]
+        response = client.get("/rest/agile/1.0/sprint/#{sprint_id}/issue?#{parameterize_options(options)}")
         parse_json(response.body)
       end
 

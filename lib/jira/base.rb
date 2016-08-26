@@ -157,6 +157,10 @@ module JIRA
       JSON.parse(string)
     end
 
+    def self.parameterize_options(options)
+      options.map {|key, val| "#{key}=#{val}" }.join('&')
+    end
+
     # Declares that this class contains a singular instance of another resource
     # within the JSON returned from the JIRA API.
     #
